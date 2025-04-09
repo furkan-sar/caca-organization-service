@@ -3,6 +3,7 @@ package com.caca.organizasyon.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +22,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/rest/api/category")
+@RequestMapping("/api/category")
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ApiResponse<CategoryResponse>> save(@Valid @RequestBody CategoryRequest request) {
         return ResponseEntity.ok(ApiResponse.success(categoryService.save(request)));
@@ -42,12 +44,14 @@ public class CategoryController {
         return ResponseEntity.ok(ApiResponse.success(categoryService.findById(id)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<CategoryResponse>> update(@PathVariable Long id,
                                                                 @RequestBody CategoryRequest request) {
         return ResponseEntity.ok(ApiResponse.success(categoryService.update(id, request)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteById(@PathVariable Long id) {
         categoryService.deleteById(id);

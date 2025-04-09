@@ -9,10 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-    private final AppConfig appConfig;
+    private final AppProperties appProperties;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/%s/**", appConfig.getUploadDir()).addResourceLocations("file:%s/", appConfig.getUploadDir());
+        registry.addResourceHandler("/%s/**", appProperties.getUploadDir()).addResourceLocations("file:%s/", appProperties.getUploadDir());
     }
+
 }
