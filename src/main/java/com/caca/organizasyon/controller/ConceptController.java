@@ -2,8 +2,8 @@ package com.caca.organizasyon.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +22,16 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/rest/api/concept")
+@RequestMapping("/api/concept")
 @RequiredArgsConstructor
 public class ConceptController {
 
     private final ConceptService conceptService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ApiResponse<ConceptResponse>> save(@Valid @RequestBody ConceptRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(conceptService.save(request)));
+        return ResponseEntity.ok(ApiResponse.success(conceptService.save(request)));
     }
 
     @GetMapping
@@ -38,17 +39,20 @@ public class ConceptController {
         return ResponseEntity.ok(ApiResponse.success(conceptService.findAll()));
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ConceptResponse>> findById(@PathVariable Long id) {
         return ResponseEntity.ok(ApiResponse.success(conceptService.findById(id)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<ConceptResponse>> update(@PathVariable Long id,
                                                                @RequestBody ConceptRequest request) {
         return ResponseEntity.ok(ApiResponse.success(conceptService.update(id, request)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
         conceptService.deleteById(id);

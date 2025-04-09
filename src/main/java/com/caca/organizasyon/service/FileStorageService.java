@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.caca.organizasyon.config.AppProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,10 +16,11 @@ import com.caca.organizasyon.exception.ServerException;
 @Service
 public class FileStorageService {
 
+
     private final Path fileStoragePath;
 
-    public FileStorageService(@Value("${file.upload-dir}") String uploadDir) {
-        this.fileStoragePath = Paths.get(uploadDir).toAbsolutePath().normalize();
+    public FileStorageService(AppProperties appProperties) {
+        this.fileStoragePath = Paths.get(appProperties.getUploadDir()).toAbsolutePath().normalize();
         createUploadDirectory();
     }
 

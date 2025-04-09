@@ -1,13 +1,16 @@
 package com.caca.organizasyon.config;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-public class AppConfig {
+@Setter
+public class AppProperties {
 
-    @Value("${app.file.upload-dir}")
+    @Value("${app.upload-dir}")
     private String uploadDir;
+
 }

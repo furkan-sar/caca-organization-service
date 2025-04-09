@@ -2,8 +2,8 @@ package com.caca.organizasyon.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +22,17 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/rest/api/product")
+@RequestMapping("/api/product")
 @RequiredArgsConstructor
 public class ProductController {
+
     private final ProductService productService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<ApiResponse<ProductResponse>> save(@Valid @RequestBody ProductRequest productRequest) {
         ProductResponse response = productService.save(productRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(response));
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 
     @GetMapping
@@ -45,6 +47,8 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductResponse>> update(@PathVariable Long id,
                                                                @Valid @RequestBody ProductRequest request) {
@@ -52,6 +56,7 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success(response));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
         productService.deleteById(id);

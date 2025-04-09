@@ -5,7 +5,7 @@ Bu proje, Spring Boot kullanılarak geliştirilen ölçeklenebilir ve modüler b
 ✅ **Spring Validation ve Service Katmanında Kontroller:** API uç noktalarına gelen veriler, hem Spring Validation hem de service katmanında yapılan ek kontrollerle doğrulanacaktır. Spring Validation, verilerin iş kurallarına uygunluğunu ve doğruluğunu kontrol ederken, service katmanında daha karmaşık iş mantıkları ve özel kurallar da dikkate alınacaktır. Bu sayede, geçerli olmayan verilerin işleme alınması engellenecek ve API'nin sağlamlığı artırılacaktır.  
 ✅ **Dependency Injection (Bağımlılık Enjeksiyonu)** olarak Constructor Injection yöntemi kullanılmaktadır. Bu yaklaşım, sınıfların ihtiyaç duyduğu bağımlılıkların constructor (yapıcı) metoduna parametre olarak enjekte edilmesini sağlar.  
 ✅ **Hata Yönetimi:** GlobalExceptionHandler sınıfı kullanılarak, uygulamada meydana gelen hatalar merkezi bir şekilde yakalanacak ve belirli bir formatta JSON yanıtları döndürülecektir. Bu, kullanıcı dostu hata mesajları ve hata kodları ile API'nin tutarlı bir şekilde hata yönetimini sağlar.  
-✅ **Güvenlik:** Spring Security ile temel kimlik doğrulama ve yetkilendirme mekanizmaları sağlanır. JWT tabanlı kimlik doğrulama ve erişim kontrolü, ilerleyen sürümlerde eklenecektir.  
+✅ **Güvenlik:** Spring Security ile temel kimlik doğrulama ve yetkilendirme mekanizmaları sağlanır.
 ✅ **Dokümantasyon:** Swagger ile API uç noktaları kolayca keşfedilebilir. Swagger dokümantasyonu, ilerleyen sürümlerde projeye eklenecektir.  
 ✅ **Lombok Kullanımı:** Proje, Java kodlarını daha temiz ve okunabilir hale getirmek için Lombok kütüphanesini kullanmaktadır.
 

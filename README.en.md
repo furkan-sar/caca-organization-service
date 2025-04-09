@@ -5,7 +5,7 @@ This project is a scalable and modular backend application developed using Sprin
 ✅ **Spring Validation and Service Layer Checks:** Incoming data to the API endpoints will be validated using both Spring Validation and additional checks in the service layer. While Spring Validation focuses on ensuring data validity and compliance with business rules, the service layer will handle more complex business logic and special rules. This approach ensures that invalid data is not processed and enhances the robustness of the API.    
 ✅ **Dependency Injection:** Constructor Injection method is used for Dependency Injection. This approach allows the dependencies required by classes to be injected as parameters into the constructor method.    
 ✅ **Error Handling:** Errors occurring in the application will be caught centrally using the GlobalExceptionHandler class, and JSON responses will be returned in a specific format. This ensures consistent error management with user-friendly messages and error codes.  
-✅ **Security:** Basic authentication and authorization mechanisms are provided with Spring Security. JWT-based authentication and access control will be added in future versions.  
+✅ **Security:** Basic authentication and authorization mechanisms are provided with Spring Security.
 ✅ **Documentation:** API endpoints can be easily discovered with Swagger. Swagger documentation will be added to the project in future versions.
 ✅ **Lombok Usage:** The project utilizes the Lombok library to make Java code cleaner and more readable.
 

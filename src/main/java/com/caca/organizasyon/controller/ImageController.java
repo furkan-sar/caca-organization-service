@@ -3,6 +3,7 @@ package com.caca.organizasyon.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +20,13 @@ import com.caca.organizasyon.service.ImageService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/rest/api/image")
+@RequestMapping("/api/image")
 @RequiredArgsConstructor
 public class ImageController {
 
     private final ImageService imageService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/upload")
     public ResponseEntity<ApiResponse<ImageResponse>> save(@RequestParam("file") MultipartFile file) {
         return ResponseEntity.ok(ApiResponse.success(imageService.save(file)));
@@ -42,6 +44,7 @@ public class ImageController {
         return ResponseEntity.ok(ApiResponse.success(imageService.findById(id, includeBase64)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteById(@PathVariable Long id) {
         imageService.deleteById(id);
